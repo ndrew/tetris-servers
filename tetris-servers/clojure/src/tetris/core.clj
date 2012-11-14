@@ -16,8 +16,14 @@
         {}))
 
 
+(defn pprint-glass [glass]
+  (apply str (interpose \newline 
+      (reverse 
+        (re-seq #".........." glass)))))
+
+
 (defn tetris [figure x y glass]
-    (println (str "request: figure=" figure ", x=" x " ,y=" y ", glass" glass))
+    (println (str "request: figure=" figure ", x=" x " ,y=" y ", glass=\n" (pprint-glass glass) ))
     
     (let [move (next-move figure x y glass)
           out (str "left=" (:left move) ", right="  (:right  move) ", "
